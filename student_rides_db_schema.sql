@@ -11,7 +11,11 @@ CREATE TABLE users (
 
 ALTER TABLE ONLY users ADD CONSTRAINT user_pkey PRIMARY KEY(id, username)
 
-ALTER TABLE ONLY user ADD CONSTRAINT user_phone_unique UNIQUE(phonenumber)
+ALTER TABLE ONLY users ADD CONSTRAINT username_unique UNIQUE(username)
+
+ALTER TABLE ONLY users ADD CONSTRAINT university_name_unique UNIQUE(university_name)
+
+ALTER TABLE ONLY users ADD CONSTRAINT user_phone_unique UNIQUE(phonenumber)
 
 CREATE TABLE authorities (
 username varchar(50) NOT NULL,
@@ -32,5 +36,7 @@ CREATE TABLE university(
 )
 
 ALTER TABLE university ADD CONSTRAINT university_pkey PRIMARY KEY(id, name)
+
+ALTER TABLE ONLY university ADD CONSTRAINT university_name UNIQUE(name)
 
 ALTER TABLE university ADD CONSTRAINT univeristy_name_fkey FOREIGN KEY(name) REFERENCES users(university_name) ON DELETE CASCADE
