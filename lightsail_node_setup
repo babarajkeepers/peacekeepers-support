@@ -1,0 +1,15 @@
+After uploading the API, we need to setup the route 
+
+From the lightsail terminal
+
+Steps :
+1) sudo vi /opt/bitnami/apache2/conf/bitnami/bitnami-apps-prefix.conf
+
+2) ProxyPass /api http://127.0.0.1:8000
+   ProxyPassReverse /api http://127.0.0.1:8000
+
+   #Save and exit file
+
+3) Restart the apache proxy server   
+   sudo /opt/bitnami/ctlscript.sh restart apache
+   
