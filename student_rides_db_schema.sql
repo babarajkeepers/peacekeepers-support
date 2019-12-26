@@ -1,42 +1,32 @@
+
+CREATE TABLE university(
+ id SERIAL primary key,
+ name varchar(100) NOT NULL UNIQUE,
+ zip_code varchar(10) NOT NULL,
+ street_name varchar(50) NOT NULL
+)
+
 CREATE TABLE users (
- id UUID,
- username varchar(50) NOT NULL,
- phonenumber varchar(20) NOT NULL,
+ id SERIAL primary key,
+ username varchar(50) NOT NULL UNIQUE,
+ phonenumber varchar(20) NOT NULL UNIQUE,
  password varchar(50) NOT NULL,
  university_name varchar(100) NOT NULL,
  isrider boolean,
  gender varchar(10) NOT NULL,
  isactive boolean
-);
-
-ALTER TABLE ONLY users ADD CONSTRAINT user_pkey PRIMARY KEY(id, username)
-
-ALTER TABLE ONLY users ADD CONSTRAINT username_unique UNIQUE(username)
-
-ALTER TABLE ONLY users ADD CONSTRAINT university_name_unique UNIQUE(university_name)
-
-ALTER TABLE ONLY users ADD CONSTRAINT user_phone_unique UNIQUE(phonenumber)
-
-CREATE TABLE authorities (
-username varchar(50) NOT NULL,
-authority varchar(50) NOT NULL
-);
-
-ALTER TABLE authorities ADD CONSTRAINT authorities_pkey PRIMARY KEY(username)
-
-ALTER TABLE authorities ADD CONSTRAINT username_fkey FOREIGN KEY(username) REFERENCES users(username) ON DELETE CASCADE
-
-ALTER TABLE authorities ADD CONSTRAINT authorities_unique UNIQUE(username, authority)
-
-CREATE TABLE university(
- id UUID,
- name varchar(100) NOT NULL,
- zip_code varchar(10) NOT NULL,
- street_name varchar(50) NOT NULL
 )
 
-ALTER TABLE university ADD CONSTRAINT university_pkey PRIMARY KEY(id, name)
+ALTER TABLE users ADD CONSTRAINT univeristy_name_fkey FOREIGN KEY(university_name) 
+REFERENCES university(name) ON DELETE CASCADE
 
-ALTER TABLE ONLY university ADD CONSTRAINT university_name UNIQUE(name)
 
-ALTER TABLE university ADD CONSTRAINT univeristy_name_fkey FOREIGN KEY(name) REFERENCES users(university_name) ON DELETE CASCADE
+Dummy Data
+insert into university (name, zip_code, street_name) values('IIT', '66008', '123 Main Street')
+insert into university (name, zip_code, street_name) values('UTA', '66213', '3 Olive Street')
+insert into university (name, zip_code, street_name) values('MIT', '14524', '678 Ballas Street')
+
+insert into users (username, phonenumber, password, university_name, isdriver, gender, isactive) values('Babatunde', '9743333333', '12345','IIT',false,'MALE', false)
+insert into users (username, phonenumber, password, university_name, isdriver, gender, isactive) values('Raj', '12343333333', '12345','UTA',true,'MALE', true)
+insert into users (username, phonenumber, password, university_name, isdriver, gender, isactive) values('Keepers', '1623333333', '12345','UTA',true,'FEMALE', false)
+insert into users (username, phonenumber, password, university_name, isdriver, gender, isactive) values('Babatunde', '9743333333', '12345','UTA',false,'MALE', false)
