@@ -13,3 +13,5 @@ Steps :
 3) Restart the apache proxy server   
    sudo /opt/bitnami/ctlscript.sh restart apache
    
+** Create symbolic link for react ui **
+sudo ln -s /home/bitnami/Projects/rides-ui/dist/* /home/bitnami/stack/apache2/htdocs
